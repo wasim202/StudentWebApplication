@@ -9,7 +9,7 @@ namespace StudentWebApplication.Models
         [Required, DataType(DataType.Password)]
         public String Password { get; set; }
         [Required, DataType(DataType.Password), Compare("Password")]
-        public String ConfirmPasswod { get; set; }
+        public String ConfirmPassword { get; set; }
         public bool IsAdmin { get; set; } = false;
     }
 }
