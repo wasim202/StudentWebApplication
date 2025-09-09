@@ -126,7 +126,7 @@ namespace StudentWebApplication.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("JWToken"); // clear the token
-            return RedirectToAction("Login");      // go back to login page
+            return RedirectToAction("Index", "Home");      // go back to Home page
         }
 
     }
