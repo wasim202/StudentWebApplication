@@ -122,10 +122,12 @@ namespace StudentWebApplication.Controllers
             return RedirectToAction("Index", "Student");
         }
 
+        [HttpPost]
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("JWToken");
-            return RedirectToAction("Login");
+            HttpContext.Session.Remove("JWToken"); // clear the token
+            return RedirectToAction("Login");      // go back to login page
         }
+
     }
 }
