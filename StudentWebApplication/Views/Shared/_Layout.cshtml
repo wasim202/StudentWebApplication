@@ -25,6 +25,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <div class="ms-auto">
+                            @if (Context.Session.GetString("JWToken") == null)
+                            {
+                                <!-- Show Login if no session -->
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary me-2">Login</a>
+                            }
+                            else
+                            {
+                                <!-- Show Logout if logged in -->
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-danger">Logout</button>
+                                </form>
+                            }
+                        </div>
+
                     </ul>
                 </div>
             </div>
