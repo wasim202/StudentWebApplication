@@ -1,6 +1,6 @@
-﻿@model LoginVM
+﻿@model UserLogin
 
-<h2>Login</h2>
+@* <h2>Login</h2>
 
 <form asp-action="Login" method="post">
     <div>
@@ -15,3 +15,52 @@
     </div>
     <button type="submit">Login</button>
 </form>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+} *@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">Login</h2>
+
+    <form asp-action="Login" method="post" class="mx-auto" style="max-width: 400px;">
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label">Username</label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+
+@if (ViewBag.Error != null)
+{
+        <div class="alert alert-danger mt-3 text-center">
+            @ViewBag.Error
+        </div>
+}
+</div>
+</body>
+@section Scripts {
+@{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    
+}
+}
+</html>
+
+
