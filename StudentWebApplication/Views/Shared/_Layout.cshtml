@@ -28,8 +28,9 @@
                         <div class="ms-auto">
                             @if (Context.Session.GetString("JWToken") == null)
                             {
-                                <!-- Show Login if no session -->
+                                <!-- Show Login and register if no session -->
                                 <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary me-2">Login</a>
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-success">Sign Up</a>
                             }
                             else
                             {
