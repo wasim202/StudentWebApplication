@@ -1,0 +1,24 @@
+﻿@model List<StudentWebApplication.Models.Student>
+@{
+    ViewData["Title"] = "Students";
+}
+<h2>Students</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.Name</td>
+                <td>@s.Age</td>  
+            </tr>
+        }
+    </tbody>
+</table>
