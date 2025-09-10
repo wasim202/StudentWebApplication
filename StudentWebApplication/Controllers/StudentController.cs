@@ -43,6 +43,10 @@ namespace StudentWebApplication.Controllers
                 return RedirectToAction("Index");
 
             var student = await _service.GetByIdAsync(id);
+            if (student == null)
+            {
+                return View("NotFound");
+            }
             return View(student);
         }
 
