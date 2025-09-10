@@ -17,8 +17,27 @@ namespace StudentWebApplication.Services
         public async Task<List<Student>> GetAllAsync() =>
             await _httpClient.GetFromJsonAsync<List<Student>>("https://localhost:7186/api/student");
 
-        public async Task<Student> GetByIdAsync(int id) =>
-            await _httpClient.GetFromJsonAsync<Student>($"https://localhost:7186/api/student/{id}");
+        //public async Task<Student> GetByIdAsync(int id) =>
+        //    await _httpClient.GetFromJsonAsync<Student>($"https://localhost:7186/api/student/{id}");
+        
+        public async Task<Student?> GetByIdAsync(int id)
+        {
+            var response = await _httpClient.GetAsync($"https://localhost:7186/api/student/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<Student>();
+            }
+
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return null; // student not found
+            }
+
+            response.EnsureSuccessStatusCode(); // throw for other errors
+            return null;
+        }
+
 
         public async Task AddAsync(Student student) =>
             await _httpClient.PostAsJsonAsync("https://localhost:7186/api/student", student);
