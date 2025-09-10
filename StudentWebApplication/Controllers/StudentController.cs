@@ -33,6 +33,19 @@ namespace StudentWebApplication.Controllers
             //return View(students);
         }
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id )
+        {
+            var token = HttpContext.Session.GetString("JWToken");
+            if (!JwtHelper.IsAdmin(token))
+                return RedirectToAction("Index");
+
+            var student = await _service.GetByIdAsync(id);
+            return View(student);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
